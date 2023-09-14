@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-sacale=1.0">
+    <title>practica 02</title>
+    <style>
+        img{
+            box-shadow: 5px 10px 10px red;
+            border-radius: 10% 30% 40%;
+        }
+
+        figure{
+            text-align: center;
+            display: inline-block;
+            width: 300px;
+        }
+        img.redonda{
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+   
+    <h1> Random picture</h1>
+    <!-- https://picsum.photos/id/1/200/200 -->
+
+    <!--ese div es una cadena de texto que identifica a la variable id-->
+    <div id="gatito"></div>
+    
+<!-- <figure>
+        <img src="https://picsum.photos/id/1/200/200" alt="">
+        <figcaption>Jhon</figcaption>
+    </figure>
+    <figure>
+        <img src="https://picsum.photos/id/2/200/200" alt="">
+        <figcaption>Jame</figcaption>
+    </figure> -->
+
+        <!--nuevas 2 imagenes, hecho el 14 de sept-->
+  <!--<figure>
+        <img src="https://picsum.photos/id/1/200/200" alt="">
+        <figcaption>Jhon</figcaption>
+    </figure>
+    <figure>
+        <img src="https://picsum.photos/id/2/200/200" alt="">
+        <figcaption>Jame</figcaption>
+    </figure>
+    -->
+    <!-- <p> lorem </p> da un texto aleatorio, con "xN" n es numero que representa la extención -->
+    <script>
+        const gatito = document.getElementById("gatito")
+        const url = "https://picsum.photos/id/"
+        const size = "/200/200"
+       
+        const Picture = (parametro) => {
+            const src = url + parametro.id + size
+            return `
+             <figure>
+                <img src="${src}" alt="">
+                <figcaption>${parametro.nombre}</figcaption>
+            </figure>
+            `
+        }
+
+        gatito.innerHTML = Picture({id: 1, nombre: "John"})
+        gatito.innerHTML += Picture({id: "2", nombre: "Jane"})
+        gatito.innerHTML += Picture({id:"20", nombre: "Jajo"})
+        
+        const lista = document.querySelectorAll("img")
+        for (let i = 0; i < lista.length; i++) {
+             lista[i].addEventListener("click", () => {
+               // lista[i].style.borderRadius = "50%"
+               lista[i].classList.toggle("redonda")
+             });
+            
+        }
+
+    </script>
+
+</body>
+</html>
