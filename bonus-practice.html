@@ -43,27 +43,32 @@
 </head>
 <body>
     <h1>Bonus practice</h1>
-    <form action="" id="formularioImagen">
-        <label for="imagen">Imágen aleatoria:</label>
-        <input type="numero" id="numeroX" name="numeroX">
-        <input type="submit" value="Mostrar imagen aleatoria">
+    <form id="formularioImagen">
+        <label for="imagen">Imágenes aleatorias:</label>
+        <input type="text" id="numeros" name="numeros">
+        <input type="submit" value="Buscar imágenes">
     </form>
     <div id="imagenCont"></div> 
 
     <script>
-        const imagenForm = document.getElementById("formularioImagen"); 
-        const imagenContainer = document.getElementById("imagenCont"); 
+        const imagenForm = document.getElementById("formularioImagen");
+        const imagenContainer = document.getElementById("imagenCont");
 
-        imagenForm.addEventListener("submit", async evento => { 
+        imagenForm.addEventListener("submit", async evento => {
             evento.preventDefault();
-            const numeroX = document.getElementById("numeroX").value;
-            const urlImg = await obtenerImagenAleatoria(numeroX);
-            
-            const imagen = document.createElement("img");
-            imagen.src = urlImg;
-            
+            const numeros = document.getElementById("numeros").value;
+            const numerosArray = numeros.split(',').map(num => num.trim());
             imagenContainer.innerHTML = "";
-            imagenContainer.appendChild(imagen);
+
+            for (const numero of numerosArray) {
+                if (!isNaN(numero)) {
+                    const urlImg = await obtenerImagenAleatoria(numero);
+                    const imagen = document.createElement("img");
+                    imagen.src = urlImg;
+
+                    imagenContainer.appendChild(imagen);
+                }
+            }
         });
 
         async function obtenerImagenAleatoria(numeroX) {
