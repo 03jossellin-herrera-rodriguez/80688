@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bonus-practice</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+          font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;  
+        }
+        h1{
+            text-align: center;
+            padding-bottom: 15px;
+        }
+        form{
+            box-shadow: 10px 20px 15px;
+            width: 300px;
+            border: 1px solid lightslategray;
+            border-radius: 5px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        input{
+            width: 100%;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid lightslategray;
+        }
+        input[type="submit"]{
+            color:white;
+            background-color: blue;
+        }
+        label{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <h1>Bonus practice</h1>
+    <form action="" id="formularioImagen">
+        <label for="imagen">Imágen aleatoria:</label>
+        <input type="numero" id="numeroX" name="numeroX">
+        <input type="submit" value="Mostrar imagen aleatoria">
+    </form>
+    <div id="imagenCont"></div> 
+
+    <script>
+        const imagenForm = document.getElementById("formularioImagen"); 
+        const imagenContainer = document.getElementById("imagenCont"); 
+
+        imagenForm.addEventListener("submit", async evento => { 
+            evento.preventDefault();
+            const numeroX = document.getElementById("numeroX").value;
+            const urlImg = await obtenerImagenAleatoria(numeroX);
+            
+            const imagen = document.createElement("img");
+            imagen.src = urlImg;
+            
+            imagenContainer.innerHTML = "";
+            imagenContainer.appendChild(imagen);
+        });
+
+        async function obtenerImagenAleatoria(numeroX) {
+            const response = await fetch(`https://picsum.photos/200/300?random=${numeroX}`);
+            const imageUrl = response.url;
+            return imageUrl;
+        }
+    </script>
+</body>
+</html>
