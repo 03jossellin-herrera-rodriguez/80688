@@ -1,3 +1,4 @@
+import './MiFieldSet.css'
 function MiFieldset(props){
     const{titulo, txt1, txt2} = props
     return 
@@ -12,4 +13,4 @@ function MiFieldset(props){
     </>
 }
 
-export default MiFieldeset
+export default MiFieldSet
