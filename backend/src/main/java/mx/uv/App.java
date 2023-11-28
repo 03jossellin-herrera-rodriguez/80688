@@ -28,15 +28,6 @@ public class App
         get("/",
             (request, response) -> "<h1>Bienvenido al backend</h1>"
         );
-        get("/hola",
-            (request, response) -> "<h1>Hola mundo</h1>"
-        );
-        get("/adios",
-            (request, response) -> "<h1>Adios mundo</h1>"
-        );
-        get("/fin",
-            (request, response) -> "<h1>Fin mundo</h1>"
-        );
 
         get("/registrar", (request, response) -> {
             JsonObject resp = new JsonObject();
